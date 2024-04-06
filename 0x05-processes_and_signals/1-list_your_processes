@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Script to diplay current running processess
+
+ps -a -x -u -f
