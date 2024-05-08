@@ -1,18 +1,6 @@
-#puppet manifest to fix apache 500 error
+# Creat a manifest that fix all termintion of phpp.
 
-class apache_config {
-  file { '/etc/httpd/conf/httpd.cong':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    source  => 'puppet:///modules/apache_configuration/httpd.conf',
-    require => Package['httpd'],
-    notify  => Service['httpd'],
-  }
-  service { 'httpd':
-    ensure  => running,
-    enable  => true,
-  }
+exec { 'fix_phpp':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => ['/bin', '/usr/bin/', '/usr/loca/bin/'],
 }
-include apache_config
